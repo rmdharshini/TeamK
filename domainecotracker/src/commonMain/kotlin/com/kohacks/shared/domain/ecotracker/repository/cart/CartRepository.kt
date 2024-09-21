@@ -8,6 +8,7 @@ import com.kohacks.shared.domain.ecotracker.local.entities.CartEntity
 import kotlinx.coroutines.flow.Flow
 
 interface CartRepository {
+
     suspend fun add(item: CartInfo)
 
     suspend fun count(): Int

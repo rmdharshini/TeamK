@@ -9,40 +9,22 @@ import com.kohacks.shared.domain.ecotracker.local.entities.CartEntity
 import com.kohacks.shared.domain.ecotracker.local.entities.CategoryEntity
 import com.kohacks.shared.domain.ecotracker.local.entities.SubCategoryEntity
 import com.kohacks.shared.domain.ecotracker.local.entities.UserEntity
-import kotlin.math.absoluteValue
 
 fun CategoryEntity.toCategoryInfo() : CategoryInfo {
     return CategoryInfo(id, type.toCategoryType())
-}
-
-fun CategoryInfo.toCategoryEntity() : CategoryEntity {
-    return CategoryEntity(id, categoryType.value)
 }
 
 fun UserEntity.toUserInfo() : UserInfo {
     return UserInfo(id, name, emission)
 }
 
-fun UserInfo.toUserEntity() : UserEntity {
-    return UserEntity(id, name, emission)
-}
-
 fun SubCategoryEntity.toSubCategoryInfo() : SubCategoryInfo {
     return SubCategoryInfo(subCategoryId = id, categoryId, type, price, emission)
 }
 
-fun SubCategoryInfo.toSubCategoryEntity() : SubCategoryEntity {
-    return SubCategoryEntity(subCategoryId, categoryId, subCategoryType, price, carbonEmission)
-}
-
 fun CartEntity.toCartInfo() : CartInfo {
-    return CartInfo(id, subCategoryId, subCategoryType, unit, price, emission, scheduleTime, status)
+    return CartInfo(id, subCategoryId, categoryType.toCategoryType(), subCategoryType,  unit, price, emission, scheduleTime, status)
 }
-
-fun CartInfo.toCartEntity() : CartEntity {
-    return CartEntity(id, subCategoryId, subCategoryType, unit, price, emission, scheduleTime, status)
-}
-
 
 fun Int.toCategoryType() : CategoryType {
     return when(this) {
@@ -51,4 +33,9 @@ fun Int.toCategoryType() : CategoryType {
         CategoryType.ELECTRONICS.value -> CategoryType.ELECTRONICS
         else -> CategoryType.OTHER
     }
+}
+
+
+fun CartInfo.toCartEntity() : CartEntity {
+    return CartEntity(id, subCategoryId, categoryType.value, subCategoryType, unit, price, emission, scheduleTime, status)
 }
