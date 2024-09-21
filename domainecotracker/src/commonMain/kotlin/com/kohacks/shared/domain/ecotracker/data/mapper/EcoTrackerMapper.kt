@@ -34,3 +34,8 @@ fun Int.toCategoryType() : CategoryType {
         else -> CategoryType.OTHER
     }
 }
+
+
+fun CartInfo.toCartEntity() : CartEntity {
+    return CartEntity(id, subCategoryId, subCategoryType, unit, price, emission, scheduleTime, status)
+}
