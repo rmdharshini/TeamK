@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.kohacks.shared.domain.ecotracker.local.entities.CartEntity
-import com.kohacks.shared.domain.ecotracker.local.entities.CategoryEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

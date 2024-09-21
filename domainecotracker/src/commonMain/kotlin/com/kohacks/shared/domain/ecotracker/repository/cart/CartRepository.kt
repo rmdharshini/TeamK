@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.Flow
 interface CartRepository {
     suspend fun add(item: CartInfo)
 
-
     suspend fun count(): Int
 
     fun getAllCartAsFlow(): Flow<List<CartInfo>>

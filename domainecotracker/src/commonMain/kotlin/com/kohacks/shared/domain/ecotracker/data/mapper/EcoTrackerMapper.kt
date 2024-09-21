@@ -9,6 +9,7 @@ import com.kohacks.shared.domain.ecotracker.local.entities.CartEntity
 import com.kohacks.shared.domain.ecotracker.local.entities.CategoryEntity
 import com.kohacks.shared.domain.ecotracker.local.entities.SubCategoryEntity
 import com.kohacks.shared.domain.ecotracker.local.entities.UserEntity
+import kotlin.math.absoluteValue
 
 fun CategoryEntity.toCategoryInfo() : CategoryInfo {
     return CategoryInfo(id, type.toCategoryType())
@@ -22,8 +23,16 @@ fun UserEntity.toUserInfo() : UserInfo {
     return UserInfo(id, name, emission)
 }
 
+fun UserInfo.toUserEntity() : UserEntity {
+    return UserEntity(id, name, emission)
+}
+
 fun SubCategoryEntity.toSubCategoryInfo() : SubCategoryInfo {
     return SubCategoryInfo(subCategoryId = id, categoryId, type, price, emission)
+}
+
+fun SubCategoryInfo.toSubCategoryEntity() : SubCategoryEntity {
+    return SubCategoryEntity(subCategoryId, categoryId, subCategoryType, price, carbonEmission)
 }
 
 fun CartEntity.toCartInfo() : CartInfo {
