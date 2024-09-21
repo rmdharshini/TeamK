@@ -14,6 +14,10 @@ fun CategoryEntity.toCategoryInfo() : CategoryInfo {
     return CategoryInfo(id, type.toCategoryType())
 }
 
+fun CategoryInfo.toCategoryEntity() : CategoryEntity {
+    return CategoryEntity(id, categoryType.value)
+}
+
 fun UserEntity.toUserInfo() : UserInfo {
     return UserInfo(id, name, emission)
 }
@@ -26,6 +30,11 @@ fun CartEntity.toCartInfo() : CartInfo {
     return CartInfo(id, subCategoryId, subCategoryType, unit, price, emission, scheduleTime, status)
 }
 
+fun CartInfo.toCartEntity() : CartEntity {
+    return CartEntity(id, subCategoryId, subCategoryType, unit, price, emission, scheduleTime, status)
+}
+
+
 fun Int.toCategoryType() : CategoryType {
     return when(this) {
         CategoryType.PAPER.value -> CategoryType.PAPER
@@ -33,9 +42,4 @@ fun Int.toCategoryType() : CategoryType {
         CategoryType.ELECTRONICS.value -> CategoryType.ELECTRONICS
         else -> CategoryType.OTHER
     }
-}
-
-
-fun CartInfo.toCartEntity() : CartEntity {
-    return CartEntity(id, subCategoryId, subCategoryType, unit, price, emission, scheduleTime, status)
 }

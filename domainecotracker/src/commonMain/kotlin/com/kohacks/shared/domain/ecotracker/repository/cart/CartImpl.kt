@@ -1,10 +1,9 @@
-package com.kohacks.shared.domain.ecotracker.repository.impl
+package com.kohacks.shared.domain.ecotracker.repository.cart
 
 import com.kohacks.shared.domain.ecotracker.data.mapper.toCartEntity
 import com.kohacks.shared.domain.ecotracker.data.mapper.toCartInfo
 import com.kohacks.shared.domain.ecotracker.data.model.CartInfo
 import com.kohacks.shared.domain.ecotracker.local.dao.CartDao
-import com.kohacks.shared.domain.ecotracker.repository.cart.CartRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
