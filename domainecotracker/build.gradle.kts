@@ -4,6 +4,8 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("maven-publish")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.androidxRoom)
 
 }
 
@@ -38,7 +40,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-
+                implementation(libs.androidx.room.runtime)
+                implementation(libs.androidx.sqlite.bundled)
             }
         }
         val commonTest by getting {
@@ -62,6 +65,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
 
             dependencies {
+                kotlin.srcDir("build/generated/ksp/metadata")
             }
         }
         val iosX64Test by getting
@@ -84,6 +88,13 @@ android {
     }
 }
 
-task("testClasses").doLast {
-    println("This is a dummy testClasses task")
+
+
+tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().configureEach {
+    if (name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
+}
+room {
+    schemaDirectory("$projectDir/schemas")
 }
